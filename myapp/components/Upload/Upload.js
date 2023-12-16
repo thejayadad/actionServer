@@ -6,7 +6,7 @@ const Upload = () => {
   const [files, setFiles] = useState([])
   return (
     <section className='px-4 py-12'>
-      <div className='flex flex-col max-w-screen-xl mx-auto'>
+      <div className='flex flex-col max-w-screen-xl mx-auto items-center'>
       <UploadForm setFiles={setFiles} />
       </div>
     </section>
