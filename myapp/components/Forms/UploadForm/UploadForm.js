@@ -3,7 +3,7 @@ import { validFiles } from '@/lib/validFiles';
 import React, { useRef } from 'react';
 import { FiCloud } from 'react-icons/fi';
 
-const UploadForm = ({ setFiles }) => {
+const UploadForm = React.memo(({ setFiles }) => {
   const formRef = useRef();
 
 
@@ -22,8 +22,9 @@ const handleDrop = (e) => {
   const data = e.dataTransfer;
   handleInputFiles(data.files)
 }
+
   return (
-    <form action='upload_form'
+    <form 
     onDrop={handleDrop} onDragOver={e => e.preventDefault()}
     >
       <input
@@ -48,6 +49,6 @@ const handleDrop = (e) => {
       </label>
     </form>
   );
-};
+});
 
 export default UploadForm;
