@@ -28,3 +28,8 @@ a {
   color: inherit;
   text-decoration: none;
 } */
+
+.masonry{
+  columns: 5 280px;
+  gap: 15px;
+}

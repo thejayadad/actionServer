@@ -7,28 +7,32 @@ const UploadForm = React.memo(({ setFiles }) => {
   const formRef = useRef();
 
 
-const handleInputFiles = files => {
+const handleInputFiles = (files) => {
   if(!files.length) return
 
   [...files].map(file => {
     const result = validFiles(file)
     setFiles(prev => [...prev, result])
+    
   })
-
   formRef.current.reset()
+  
 }
 const handleDrop = (e) => {
   e.preventDefault()
   const data = e.dataTransfer;
+  console.log(data)
   handleInputFiles(data.files)
 }
 
   return (
     <form 
+    ref={formRef}
     onDrop={handleDrop} onDragOver={e => e.preventDefault()}
     >
       <input
         id='upload'
+        accept='.png'
         multiple
         hidden
         type='file'
