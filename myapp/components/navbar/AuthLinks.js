@@ -3,13 +3,13 @@ import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 
 
-const AuthLinks = async () => {
+const AuthLinks = async ({user}) => {
   const session = await getServerSession(options);
 
   return (
     <div>
-         {session ? (
-            <Link href="/api/auth/signout?callbackUrl=/">Logout</Link>
+         {user ? (
+            <Link href="/api/auth/signout?callbackUrl=/">{user?.name} Logout</Link>
           ) : (
             <Link href="/api/auth/signin">Login</Link>
           )}
