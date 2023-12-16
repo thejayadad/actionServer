@@ -2,6 +2,10 @@
 import React, {useMemo, useState} from 'react'
 import UploadForm from '../Forms/UploadForm/UploadForm'
 import UploadCard from '../Cards/UploadCard/UploadCard'
+import { uploadPhotos } from '@/actions/photosActions'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 
 const Upload = () => {
   const [files, setFiles] = useState([])
@@ -22,7 +26,12 @@ const Upload = () => {
     })
 
     const newFiles = filesUpload.map(file => ({...file, filesUpload: '', imgUrl: ''}))
-    console.log(newFiles)
+    const res = await uploadPhotos(formData, newFiles);
+
+    setLoading(false)
+    if(res?.errMsg){
+      toast.error(res.errMsg)
+    }
   }
   return (
     <section className='px-4 py-12'>
